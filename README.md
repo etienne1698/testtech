@@ -1,5 +1,15 @@
 # ColorApp
 
+Run the project
+```
+nvm use 18.13
+npm i 
+ng serve
+```
+
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
 
 ## Development server
