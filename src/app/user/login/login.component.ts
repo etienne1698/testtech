@@ -15,7 +15,7 @@ export class LoginComponent {
   form = new FormGroup({
     email: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(6)],
+      validators: [Validators.required, Validators.minLength(6), Validators.email],
     }),
     password: new FormControl('', {
       nonNullable: true,
