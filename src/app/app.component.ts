@@ -14,9 +14,14 @@ import { UserService } from './user/user.service';
 })
 export class AppComponent {
   constructor(private userService: UserService, private router: Router) {}
+
   title = 'color-app';
 
   logoutLoading = signal(false);
+
+  get user() {
+    return this.userService.user;
+  }
 
   logout() {
     this.logoutLoading.set(true);
