@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { UserService } from '../user.service';
-import { FormControl } from '@angular/forms';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'login',
   standalone: false,
@@ -13,21 +12,26 @@ export class LoginComponent {
 
   error = signal<string | undefined>(undefined);
 
-  email = new FormControl('');
-  password = new FormControl('');
+  form = new FormGroup({
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
+    password: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(5)],
+    }),
+  });
 
   login() {
-    const email = this.email.value;
-    const password = this.password.value;
-    if (!email || !password) return;
-    this.userService.login({ email, password }).subscribe({
+    if (!this.form.valid) return;
+    // @ts-ignore
+    this.userService.login({ ...this.form.value }).subscribe({
       error: (err) => {
-        console.error(err)
-        this.error.set(err)
+        console.error(err);
+        this.error.set(err);
       },
-      next(value) {
-          
-      },
+      next(value) {},
     });
   }
 }
