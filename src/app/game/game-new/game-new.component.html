@@ -1,1 +1,20 @@
-<p>game-new works!</p>
+<form [formGroup]="form">
+  <form-field label="rows">
+    <input formControlName="rows" class="form-control rounded-right" />
+  </form-field>
+  <form-field label="cols">
+    <input formControlName="cols" class="form-control rounded-right" />
+  </form-field>
+</form>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <game-cell></game-cell>
+      </td>
+      <td>
+        <game-cell></game-cell>
+      </td>
+    </tr>
+  </tbody>
+</table>
