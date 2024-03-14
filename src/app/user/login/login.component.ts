@@ -12,6 +12,7 @@ export class LoginComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   error = signal<string | undefined>(undefined);
+  loading = signal(false);
 
   form = new FormGroup({
     email: new FormControl('', {
@@ -30,17 +31,19 @@ export class LoginComponent {
 
   login() {
     if (!this.form.valid) return;
-
+    this.loading.set(true);
     // @ts-ignore
     const sub = this.userService.login({ ...this.form.value }).subscribe({
       error: (err) => {
         console.error(err);
         this.error.set(err);
+        this.loading.set(false);
         sub.unsubscribe();
       },
       next: (value) => {
         sub.unsubscribe();
         this.router.navigateByUrl('/');
+        this.loading.set(false);
       },
     });
   }
