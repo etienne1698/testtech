@@ -1,18 +1,15 @@
 <form [formGroup]="form">
   <form-field label="rows">
-    <input formControlName="rows" class="form-control rounded-right" />
+    <input formControlName="rows" type="number" step="1" min="1" class="form-control rounded-right" />
   </form-field>
   <form-field label="cols">
-    <input formControlName="cols" class="form-control rounded-right" />
+    <input formControlName="cols" type="number" step="1" min="1" class="form-control rounded-right" />
   </form-field>
 </form>
 <table>
   <tbody>
-    <tr>
-      <td>
-        <game-cell></game-cell>
-      </td>
-      <td>
+    <tr *ngFor="let row of [].constructor(form.value.rows)">
+      <td *ngFor="let col of [].constructor(form.value.cols)">
         <game-cell></game-cell>
       </td>
     </tr>

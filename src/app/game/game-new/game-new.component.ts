@@ -11,7 +11,7 @@ export class GameNewComponent {
   grid = signal<Array<Array<[string]>>>([])
 
   form = new FormGroup({
-    rows: new FormControl(6),
+    rows: new FormControl(3),
     cols: new FormControl(6),
   })
 }
