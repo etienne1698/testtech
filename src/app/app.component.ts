@@ -16,9 +16,13 @@ export class AppComponent {
   constructor(private userService: UserService, private router: Router) {}
   title = 'color-app';
 
+  logoutLoading = signal(false);
+
   logout() {
+    this.logoutLoading.set(true);
     const sub = this.userService.logout().subscribe(() => {
       this.router.navigateByUrl('/user/login');
+      this.logoutLoading.set(false);
       sub.unsubscribe();
     });
   }

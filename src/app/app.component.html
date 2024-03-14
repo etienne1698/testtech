@@ -8,7 +8,9 @@
     </span>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" (click)="logout()">Logout</a>
+          <loading [loading]="logoutLoading()">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </loading>
         </li>
           <li class="nav-item">
             <a class="nav-link">Login</a>
