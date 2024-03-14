@@ -1,2 +1,19 @@
-<form-field />
-<form-field />
+<div class="alert alert-danger" *ngIf="error()">{{ error() }}</div>
+<form-field label="email" id="email">
+  <input
+    type="email"
+    id="email"
+    class="form-control rounded-right"
+    [formControl]="email"
+  />
+</form-field>
+<form-field label="password" id="password">
+  <input
+    type="password"
+    id="password"
+    class="form-control rounded-right"
+    [formControl]="password"
+  />
+</form-field>
+
+<button class="btn btn-primary" (click)="login()">Se connecter</button>

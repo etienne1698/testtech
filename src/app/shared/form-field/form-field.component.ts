@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'form-field',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './form-field.component.css'
 })
 export class FormFieldComponent {
-
+  @Input() label?: string;
+  @Input() id?: string;
 }
