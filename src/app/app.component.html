@@ -1,21 +1,21 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand">Color Game</a>
   <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
-    </ul>
+    <ul class="navbar-nav mr-auto"></ul>
     <span class="navbar-text">
-      %username% <!--Sera remplacé plus tard-->
+      %username%
+      <!--Sera remplacé plus tard-->
     </span>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <loading [loading]="logoutLoading()">
-            <a class="nav-link" (click)="logout()">Logout</a>
-          </loading>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link">Login</a>
-          </li>
-      </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item" appUserConnected>
+        <loading [loading]="logoutLoading()">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </loading>
+      </li>
+      <li class="nav-item" appUserDisconnected>
+        <a class="nav-link" routerLink="/user/login">Login</a>
+      </li>
+    </ul>
   </div>
 </nav>
 

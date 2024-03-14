@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { GameModule } from './game/game.module';
@@ -8,7 +8,7 @@ import { UserService } from './user/user.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SharedModule, UserModule, GameModule],
+  imports: [RouterOutlet, SharedModule, UserModule, GameModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
