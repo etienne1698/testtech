@@ -16,11 +16,31 @@ export class GameNewComponent /* implements OnInit */ {
   });
 
   buildGrid({ cols, rows }: { cols: number; rows: number }) {
+
+    // Les suppression de lignes / colonnes seront moins lourde ainsi 
+    if (this.grid().length > rows) {
+      this.grid.update((grid) => {
+        grid.length = rows;
+        return grid;
+      });
+      return;
+    }
+
+    if (this.grid()?.[0]?.length > cols) {
+      this.grid.update((grid) => {
+        for (const rowIndex in grid) {
+          grid[rowIndex].length = cols;
+        }
+        return grid;
+      });
+      return;
+    }
+
     let res: Array<Array<string>> = [];
     for (let r = 0; r < rows; r++) {
       const rowArray: Array<string> = [];
       for (let c = 0; c < cols; c++) {
-        rowArray.push('transparent');
+        rowArray.push(this.grid()?.[r]?.[c] || 'transparent');
       }
       res.push(rowArray);
     }
@@ -36,10 +56,9 @@ export class GameNewComponent /* implements OnInit */ {
   }
 
   updateCellColor(i: number, y: number, color: string) {
-    this.grid.update(grid => {
+    this.grid.update((grid) => {
       grid[i][y] = color;
       return grid;
-    })
-
+    });
   }
 }
