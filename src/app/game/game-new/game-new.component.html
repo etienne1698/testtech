@@ -10,7 +10,7 @@
   <tbody>
     <tr *ngFor="let row of grid(); let i = index;">
       <td *ngFor="let col of row; let y = index;">
-        <game-cell  ></game-cell>
+        <game-cell [color]="col" (colorChange)="updateCellColor(i, y, $event)"></game-cell>
       </td>
     </tr>
   </tbody>

@@ -20,7 +20,7 @@ export class GameNewComponent /* implements OnInit */ {
     for (let r = 0; r < rows; r++) {
       const rowArray: Array<string> = [];
       for (let c = 0; c < cols; c++) {
-        rowArray.push('');
+        rowArray.push('transparent');
       }
       res.push(rowArray);
     }
@@ -28,12 +28,18 @@ export class GameNewComponent /* implements OnInit */ {
   }
 
   ngOnInit(): void {
+    this.buildGrid(this.form.value as { cols: number; rows: number });
     this.form.valueChanges.subscribe((val) => {
       if (!val.rows || !val.cols) return;
-      // @ts-ignore
-      this.buildGrid(val);
+      this.buildGrid(val as { cols: number; rows: number });
     });
   }
 
-  updateCell() {}
+  updateCellColor(i: number, y: number, color: string) {
+    this.grid.update(grid => {
+      grid[i][y] = color;
+      return grid;
+    })
+
+  }
 }
