@@ -2,15 +2,15 @@ import { Directive, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../user/user.service';
 import { User } from '../user/models/user';
 import { Subscription } from 'rxjs';
+import { UserConnectedDirective } from './user-connected.directive';
 
 @Directive({
   selector: '[appUserDisconnected]',
   standalone: false,
 })
-export class UserDisconnectedDirective implements OnInit, OnDestroy {
-  sub?: Subscription;
+export class UserDisconnectedDirective extends UserConnectedDirective {
 
-  protected checkUser(user: User | null, el: Element): void {
+  protected override checkUser(user: User | null, el: Element): void {
     if (user != null) {
       el.classList.add('d-none');
     } else {
@@ -18,17 +18,5 @@ export class UserDisconnectedDirective implements OnInit, OnDestroy {
     }
   }
 
-  constructor(private el: ElementRef, private userService: UserService) {
-    this.checkUser(this.userService.user, this.el.nativeElement);
-  }
 
-  ngOnInit(): void {
-    this.sub = this.userService.user$.subscribe((user) =>
-      this.checkUser(user, this.el.nativeElement)
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.sub?.unsubscribe?.();
-  }
 }

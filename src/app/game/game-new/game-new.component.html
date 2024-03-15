@@ -8,9 +8,9 @@
 </form>
 <table>
   <tbody>
-    <tr *ngFor="let row of [].constructor(form.value.rows)">
-      <td *ngFor="let col of [].constructor(form.value.cols)">
-        <game-cell></game-cell>
+    <tr *ngFor="let row of grid(); let i = index;">
+      <td *ngFor="let col of row; let y = index;">
+        <game-cell  ></game-cell>
       </td>
     </tr>
   </tbody>

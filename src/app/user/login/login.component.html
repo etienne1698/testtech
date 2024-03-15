@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <div class="alert alert-danger" *ngIf="error()">{{ error() }}</div>
+  <div class="alert alert-danger" *ngIf="error() as errorM">{{ errorM }}</div>
   <form-field label="email" id="email">
     <input
       type="email"
